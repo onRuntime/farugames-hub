@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 import net.faru.api.player.FaruPlayer;
 import net.faru.api.player.rank.Rank;
-import net.faru.api.tools.board.TeamsTagsManager;
 import net.faru.api.tools.player.UUIDManager;
 import net.faru.hub.FaruHub;
 import net.faru.hub.FaruHubPlayer;
@@ -26,10 +25,5 @@ public class PlayerJoinListener implements Listener {
 		if(faruPlayer.getRank().getPower() >= 950) player.setOp(true);
 		if(faruPlayer.getRank().getPower() >= Rank.YOUTUBER.getPower()) 
 			Bukkit.broadcastMessage("");
-		
-		TeamsTagsManager.setNameTag(player,
-				"§" + faruPlayer.getRank().getOrder() + faruPlayer.getRank().getChatColor()
-						+ faruPlayer.getRank().getName(),
-						faruPlayer.getRank().getChatColor() + faruPlayer.getRank().getPrefix());
 	}
 }
