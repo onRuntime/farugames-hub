@@ -1,31 +1,36 @@
 package net.faru.hub;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.faru.data.mysql.MySQLManager;
+import net.faru.hub.managers.ListenerManager;
 
 public class FaruHub extends JavaPlugin {
 
+	private Map<UUID, FaruHubPlayer> playerHubMap = new HashMap<UUID, FaruHubPlayer>();
 	private static FaruHub instance;
-	
-	protected String sqlUrl;
-	protected String sqlBase;
-	protected String sqlUser;
-	protected String sqlPass;
 	
 	public void onLoad() {
 		instance = this;
-		new MySQLManager(sqlBase, "3306", sqlUrl, sqlUser, sqlPass).connection();
 		
 		super.onLoad();
 	}
 	
 	public void onEnable() {
+		new ListenerManager().register();
+		
 		super.onEnable();
 	}
 	
 	public void onDisable() {
 		super.onDisable();
+	}
+	
+	public FaruHubPlayer getPlayer(final UUID uuid) {
+		return this.playerHubMap.containsKey(uuid) ? this.playerHubMap.get(uuid) : null;
 	}
 	
 	public static FaruHub getInstance() {
