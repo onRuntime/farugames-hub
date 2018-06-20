@@ -1,11 +1,11 @@
-package net.faru.hub.managers;
+package net.farugames.hub.managers;
 
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
-import net.faru.hub.FaruHub;
-import net.faru.hub.listeners.player.PlayerJoinListener;
+import net.farugames.hub.FaruHub;
+import net.farugames.hub.listeners.player.PlayerJoinListener;
 
 public class ListenerManager {
 

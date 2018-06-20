@@ -1,4 +1,4 @@
-package net.faru.hub;
+package net.farugames.hub;
 
 import java.util.UUID;
 

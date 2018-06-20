@@ -1,4 +1,4 @@
-package net.faru.hub.listeners.player;
+package net.farugames.hub.listeners.player;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;

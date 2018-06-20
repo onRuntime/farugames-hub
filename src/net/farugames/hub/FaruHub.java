@@ -1,4 +1,4 @@
-package net.faru.hub;
+package net.farugames.hub;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.UUID;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.faru.hub.managers.ListenerManager;
+import net.farugames.hub.managers.ListenerManager;
 
 public class FaruHub extends JavaPlugin {
 

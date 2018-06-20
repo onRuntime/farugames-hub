@@ -1,4 +1,4 @@
-package net.faru.hub.listeners.player;
+package net.farugames.hub.listeners.player;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -10,8 +10,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import net.faru.api.player.FaruPlayer;
 import net.faru.api.player.rank.Rank;
 import net.faru.api.tools.player.UUIDManager;
-import net.faru.hub.FaruHub;
-import net.faru.hub.FaruHubPlayer;
+import net.farugames.hub.FaruHub;
+import net.farugames.hub.FaruHubPlayer;
 
 public class PlayerJoinListener implements Listener {
 
