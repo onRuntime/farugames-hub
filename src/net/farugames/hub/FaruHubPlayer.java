@@ -21,6 +21,8 @@ public class FaruHubPlayer {
 		this.faruPlayer = FaruPlayer.getPlayer(uuid);
 		
 		this.scoreboardSign = new ScoreboardSign(player, player.getName());
+		this.sendScoreboard();
+		this.sendTablist();
 	}
 	
 	public void sendScoreboard() {
@@ -41,7 +43,7 @@ public class FaruHubPlayer {
 	
 	public void sendTablist() {
 		TeamsTagsManager.setNameTag(player,
-				"ยง" + faruPlayer.getRank().getOrder() + faruPlayer.getRank().getChatColor()
+				"ง" + faruPlayer.getRank().getOrder() + faruPlayer.getRank().getChatColor()
 						+ faruPlayer.getRank().getName(),
 						faruPlayer.getRank().getChatColor() + faruPlayer.getRank().getPrefix());
 	}
