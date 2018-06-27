@@ -1,4 +1,4 @@
-package net.farugames.hub.listeners.player;
+package net.faru.hub.listeners.player;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import net.faru.data.spigot.SpigotFaruData;
 
-public class PlayerQuiListener implements Listener {
+public class PlayerQuitListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
