@@ -12,7 +12,6 @@ import net.faru.api.spigot.player.FaruPlayer;
 import net.faru.api.spigot.player.languages.Lang;
 import net.faru.api.spigot.player.rank.Rank;
 import net.faru.api.tools.locations.Locations;
-import net.faru.api.tools.player.PlayerUtils;
 import net.faru.api.tools.player.UUIDManager;
 import net.faru.hub.FaruHub;
 
@@ -24,15 +23,15 @@ public class PlayerJoinListener implements Listener {
 		FaruHub.getInstance().getPlayer(UUIDManager.getUUID(faruPlayer.getPlayer().getName()));
 		event.setJoinMessage(null);
 		
-		PlayerUtils.teleport(faruPlayer.getPlayer(), Locations.getLocation(Locations.HUB, Bukkit.getWorld("world")));
-		PlayerUtils.setGamemode(faruPlayer.getPlayer(), GameMode.ADVENTURE);
-		faruPlayer.getPlayer().setMaxHealth(2.0);
-		faruPlayer.getPlayer().setHealth(2.0);
-		faruPlayer.getPlayer().setFoodLevel(20);
-		faruPlayer.getPlayer().setExp(0);
+		event.getPlayer().teleport(Locations.getLocation(Locations.HUB, Bukkit.getWorld("world")));
+		event.getPlayer().setGameMode(GameMode.ADVENTURE);
+		event.getPlayer().setMaxHealth(2.0);
+		event.getPlayer().setHealth(2.0);
+		event.getPlayer().setFoodLevel(20);
+		event.getPlayer().setExp(0);
 		if(faruPlayer.getRank().getPower() >= Rank.ADMINISTRATOR.getPower()) faruPlayer.getPlayer().setOp(true);
 		if(faruPlayer.getRank().getPower() >= Rank.YOUTUBER.getPower()) {
-			faruPlayer.getPlayer().setAllowFlight(true);
+			event.getPlayer().setAllowFlight(true);
 			for(Player players : Bukkit.getOnlinePlayers()) {
 				players.sendMessage(Lang.JOIN_MESSAGE.in(faruPlayer.getLanguage()).replaceAll("%player_rank_prefix%", faruPlayer.getRank().getColor() +
 						faruPlayer.getRank().getPrefix()).replaceAll("%player%", faruPlayer.getPlayer().getName()));
