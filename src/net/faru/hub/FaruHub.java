@@ -34,7 +34,8 @@ public class FaruHub extends JavaPlugin {
 	}
 	
 	public FaruHubPlayer getPlayer(final UUID uuid) {
-		return this.playerHubMap.containsKey(uuid) ? this.playerHubMap.get(uuid) : new FaruHubPlayer(uuid);
+		if(!this.playerHubMap.containsKey(uuid)) new FaruHubPlayer(uuid);
+		return this.playerHubMap.get(uuid);
 	}
 	
 	public static FaruHub getInstance() {
