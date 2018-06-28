@@ -14,37 +14,37 @@ public class FaruHubPlayer {
 	public Player player;
 	public FaruPlayer faruPlayer;
 	
-	public ScoreboardSign scoreboardSign;
+	public ScoreboardSign scoreboard;
 	
 	public FaruHubPlayer(final UUID uuid) {
 		this.player = Bukkit.getPlayer(uuid);
 		this.faruPlayer = FaruPlayer.getPlayer(uuid);
 		
-		this.scoreboardSign = new ScoreboardSign(player, player.getName());
+		this.scoreboard = new ScoreboardSign(this.player, "§7Loading...");
 		this.sendTablist();
-		//this.sendScoreboard();
+		this.sendScoreboard();
 	}
 	
 	public void sendTablist() {
 		TeamsTagsManager.setNameTag(player,
-				"§" + faruPlayer.getRank().getOrder() + faruPlayer.getRank().getColor()
-						+ faruPlayer.getRank().getName(),
-						faruPlayer.getRank().getColor() + faruPlayer.getRank().getPrefix() + " ");
+				faruPlayer.getRank().getOrder(),
+				faruPlayer.getRank().getColor() + faruPlayer.getRank().getPrefix() + " ");
 	}
 	
 	public void sendScoreboard() {
-		this.scoreboardSign.setObjectiveName("");
-		this.scoreboardSign.create();
-		this.scoreboardSign.setLine(10, "§a");
-		this.scoreboardSign.setLine(9, "§b");
-		this.scoreboardSign.setLine(8, "§c");
-		this.scoreboardSign.setLine(7, "§d");
-		this.scoreboardSign.setLine(6, "§e");
-		this.scoreboardSign.setLine(5, "§f");
-		this.scoreboardSign.setLine(4, "§1");
-		this.scoreboardSign.setLine(3, "§2");
-		this.scoreboardSign.setLine(2, "§3");
-		this.scoreboardSign.setLine(1, "§4");
-		this.scoreboardSign.setLine(0, "§5");
+		this.scoreboard.create();
+		this.scoreboard.setObjectiveName("§c§lF§e§la§a§lr§b§lu§d§lGames");
+		
+		this.scoreboard.setLine(10, "§a");
+		this.scoreboard.setLine(9, "§b");
+		this.scoreboard.setLine(8, "§c");
+		this.scoreboard.setLine(7, "§d");
+		this.scoreboard.setLine(6, "§e");
+		this.scoreboard.setLine(5, "§f");
+		this.scoreboard.setLine(4, "§1");
+		this.scoreboard.setLine(3, "§2");
+		this.scoreboard.setLine(2, "§3");
+		this.scoreboard.setLine(1, "§4");
+		this.scoreboard.setLine(0, "§5");
 	}
 }
