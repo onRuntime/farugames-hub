@@ -1,7 +1,7 @@
 main: net.faru.hub.FaruHub
 
-author: 3DX900
-version: 1.0
+authors: [3DX900, ChocoIG]
+version: 0.0.5
 name: FaruHub
 
 depends: [ FaruAPI, FaruData ]
