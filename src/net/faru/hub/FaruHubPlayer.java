@@ -3,12 +3,16 @@ package net.faru.hub;
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
+import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
 import net.faru.api.spigot.player.FaruPlayer;
 import net.faru.api.spigot.player.currency.Currency;
 import net.faru.api.tools.board.ScoreboardSign;
 import net.faru.api.tools.board.TeamsTagsManager;
+import net.faru.api.tools.builders.items.HeadBuilder;
+import net.faru.api.tools.builders.items.ItemBuilder;
 
 public class FaruHubPlayer {
 
@@ -48,5 +52,14 @@ public class FaruHubPlayer {
 		this.scoreboard.setLine(9, "§4");
 		this.scoreboard.setLine(10, "§eplay.farugames.net");
 		this.scoreboard.setLine(11, "§8§m+---------------+");
+	}
+	
+	public void setInventory() {
+		Player p = faruPlayer.getPlayer();
+		ItemBuilder ib = new ItemBuilder();
+		Inventory i = p.getInventory();
+		p.getInventory().clear();
+		
+		// i.setItem(0, head);
 	}
 }
