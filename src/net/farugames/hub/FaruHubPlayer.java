@@ -5,10 +5,10 @@ import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-import net.faru.api.spigot.player.FaruPlayer;
-import net.faru.api.tools.board.ScoreboardSign;
-import net.faru.api.tools.board.TeamsTagsManager;
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.tools.board.TeamsTagsManager;
 import net.farugames.hub.boards.ScoreboardManager;
+import net.farugames.hub.boards.ScoreboardSign;
 
 public class FaruHubPlayer {
 

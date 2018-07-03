@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
+import net.farugames.hub.listeners.player.PlayerChatListener;
 import net.farugames.hub.listeners.player.PlayerJoinListener;
 import net.farugames.hub.listeners.player.PlayerQuitListener;
 
@@ -20,6 +21,7 @@ public class ListenersManager {
 	public void registerListeners() {
 		pluginManager.registerEvents(new PlayerJoinListener(), plugin);
 		pluginManager.registerEvents(new PlayerQuitListener(), plugin);
+		pluginManager.registerEvents(new PlayerChatListener(), plugin);
 	}
 
 }

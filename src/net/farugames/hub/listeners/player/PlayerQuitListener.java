@@ -5,13 +5,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import net.faru.data.spigot.SpigotFaruData;
+import net.farugames.data.spigot.Main;
 
 public class PlayerQuitListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		if(SpigotFaruData.iFaruPlayer.containsKey(event.getPlayer().getUniqueId())) {
-			SpigotFaruData.iFaruPlayer.remove(event.getPlayer().getUniqueId()); }
+		if(Main.iFaruPlayer.containsKey(event.getPlayer().getUniqueId())) {
+			Main.iFaruPlayer.remove(event.getPlayer().getUniqueId()); }
 	}
 }

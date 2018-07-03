@@ -6,8 +6,7 @@ import java.util.UUID;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-import net.faru.api.spigot.SpigotFaruAPI;
-import net.faru.api.spigot.listeners.Listeners;
+import net.farugames.api.spigot.listeners.Listeners;
 import net.farugames.hub.listeners.ListenersManager;
 
 public class Main extends JavaPlugin {
@@ -25,8 +24,8 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void onEnable() {
-		SpigotFaruAPI.getInstance().disableEvent(Listeners.FOOD_LEVEL_CHANGE_LISTENER.getListener());
-		SpigotFaruAPI.getInstance().disableEvent(Listeners.WEATHER_CHANGE_LISTENER.getListener());
+		net.farugames.api.spigot.Main.getInstance().disableEvent(Listeners.FOOD_LEVEL_CHANGE_LISTENER.getListener());
+		net.farugames.api.spigot.Main.getInstance().disableEvent(Listeners.WEATHER_CHANGE_LISTENER.getListener());
 		new ListenersManager(this).registerListeners();
 		
 		super.onEnable();

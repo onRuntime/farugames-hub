@@ -101,20 +101,20 @@
 		
 		<!-- Faru-API -->
 		<dependency>
-			<groupId>net.faru</groupId>
-			<artifactId>faru-api</artifactId>
-			<version>1.0</version>
+			<groupId>net.farugames</groupId>
+			<artifactId>FaruGamesAPI</artifactId>
+			<version>0.5.0</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/faru-api.jar</systemPath>
+			<systemPath>${project.basedir}/lib/FaruGamesAPI.jar</systemPath>
 		</dependency>
 		
 		<!-- Faru-Data -->
 		<dependency>
-			<groupId>net.faru</groupId>
-			<artifactId>faru-data</artifactId>
-			<version>1.0</version>
+			<groupId>net.farugames</groupId>
+			<artifactId>FaruGamesData</artifactId>
+			<version>0.0.1</version>
 			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/faru-data.jar</systemPath>
+			<systemPath>${project.basedir}/lib/FaruGamesData.jar</systemPath>
 		</dependency>
 	</dependencies>
   

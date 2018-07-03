@@ -9,8 +9,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import net.faru.api.spigot.player.FaruPlayer;
-import net.faru.api.spigot.player.currency.Currency;
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.spigot.player.currency.Currency;
 import net.farugames.hub.PluginMethods;
 
 public class ScoreboardManager implements Listener {

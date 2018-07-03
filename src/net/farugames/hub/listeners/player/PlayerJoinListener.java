@@ -6,14 +6,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import net.faru.api.spigot.player.FaruPlayer;
-import net.faru.api.spigot.player.languages.Lang;
-import net.faru.api.spigot.player.rank.Rank;
-import net.faru.api.tools.locations.Locations;
-import net.faru.api.tools.player.UUIDManager;
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.spigot.player.languages.Lang;
+import net.farugames.api.spigot.player.rank.Rank;
+import net.farugames.api.tools.locations.Locations;
+import net.farugames.api.tools.player.UUIDManager;
 import net.farugames.hub.Main;
 
 public class PlayerJoinListener implements Listener {
@@ -38,14 +37,5 @@ public class PlayerJoinListener implements Listener {
 						faruPlayer.getRank().getPrefix()).replaceAll("%player%", faruPlayer.getPlayer().getName()));
 			}
 		}
-	}
-	
-	@EventHandler(priority = EventPriority.HIGHEST)
-	public void onPlayerChat(AsyncPlayerChatEvent e) {
-		Player sender = e.getPlayer();
-		FaruPlayer faruPlayer = FaruPlayer.getPlayer(UUIDManager.getUUID(sender.getName()));
-		Player faruSender = faruPlayer.getPlayer();
-		sender.sendMessage("simple sending");
-		faruSender.sendMessage("faruSender sending");
 	}
 }
