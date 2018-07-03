@@ -1,9 +1,9 @@
-package net.faru.hub.listeners;
+package net.farugames.hub.listeners;
 
 import org.bukkit.event.Listener;
 
 import net.faru.api.spigot.listeners.player.PlayerJoinListener;
-import net.faru.hub.listeners.player.PlayerQuitListener;
+import net.farugames.hub.listeners.player.PlayerQuitListener;
 
 public enum Listeners {
 	

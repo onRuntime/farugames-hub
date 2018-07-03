@@ -1,18 +1,14 @@
-package net.faru.hub;
+package net.farugames.hub;
 
 import java.util.UUID;
 
 import org.bukkit.Bukkit;
-import org.bukkit.SkullType;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 import net.faru.api.spigot.player.FaruPlayer;
-import net.faru.api.spigot.player.currency.Currency;
 import net.faru.api.tools.board.ScoreboardSign;
 import net.faru.api.tools.board.TeamsTagsManager;
-import net.faru.api.tools.builders.items.HeadBuilder;
-import net.faru.api.tools.builders.items.ItemBuilder;
+import net.farugames.hub.boards.ScoreboardManager;
 
 public class FaruHubPlayer {
 
@@ -27,7 +23,7 @@ public class FaruHubPlayer {
 		
 		this.scoreboard = new ScoreboardSign(this.player, "§7Loading...");
 		this.sendTablist();
-		this.sendScoreboard();
+		ScoreboardManager.loadScoreboard(FaruPlayer.getPlayer(uuid));
 	}
 	
 	public void sendTablist() {
@@ -36,6 +32,7 @@ public class FaruHubPlayer {
 				faruPlayer.getRank().getColor() + faruPlayer.getRank().getPrefix() + " ");
 	}
 	
+	/*
 	public void sendScoreboard() {
 		this.scoreboard.create();
 		this.scoreboard.setObjectiveName("§c§lF§e§la§a§lr§b§lu§d§lGames");
@@ -53,13 +50,5 @@ public class FaruHubPlayer {
 		this.scoreboard.setLine(10, "§eplay.farugames.net");
 		this.scoreboard.setLine(11, "§8§m+---------------+");
 	}
-	
-	public void setInventory() {
-		Player p = faruPlayer.getPlayer();
-		ItemBuilder ib = new ItemBuilder();
-		Inventory i = p.getInventory();
-		p.getInventory().clear();
-		
-		// i.setItem(0, head);
-	}
+	*/
 }

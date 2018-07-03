@@ -1,4 +1,4 @@
-package net.faru.hub;
+package net.farugames.hub;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,23 +8,26 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import net.faru.api.spigot.SpigotFaruAPI;
 import net.faru.api.spigot.listeners.Listeners;
-import net.faru.hub.managers.ListenerManager;
+import net.farugames.hub.listeners.ListenersManager;
 
-public class FaruHub extends JavaPlugin {
+public class Main extends JavaPlugin {
 
+	private static Main instance;
 	private Map<UUID, FaruHubPlayer> playerHubMap = new HashMap<UUID, FaruHubPlayer>();
-	private static FaruHub instance;
-	
-	public void onLoad() {
+
+	public Main() {
 		instance = this;
-		
+	}
+
+	@Override
+	public void onLoad() {
 		super.onLoad();
 	}
 	
 	public void onEnable() {
 		SpigotFaruAPI.getInstance().disableEvent(Listeners.FOOD_LEVEL_CHANGE_LISTENER.getListener());
 		SpigotFaruAPI.getInstance().disableEvent(Listeners.WEATHER_CHANGE_LISTENER.getListener());
-		new ListenerManager().register();
+		new ListenersManager(this).registerListeners();
 		
 		super.onEnable();
 	}
@@ -33,12 +36,13 @@ public class FaruHub extends JavaPlugin {
 		super.onDisable();
 	}
 	
+	public static Main getInstance() {
+		return instance;
+	}
+	
 	public FaruHubPlayer getPlayer(final UUID uuid) {
 		if(!this.playerHubMap.containsKey(uuid)) new FaruHubPlayer(uuid);
 		return this.playerHubMap.get(uuid);
 	}
 	
-	public static FaruHub getInstance() {
-		return instance;
-	}
 }
