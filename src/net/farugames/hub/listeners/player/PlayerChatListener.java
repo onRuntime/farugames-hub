@@ -39,7 +39,7 @@ public class PlayerChatListener implements Listener {
 			for (Player op : e.getRecipients()) {
 				FaruPlayer faruOp = FaruPlayer.getPlayer(op.getUniqueId());
 				if ((boolean) faruOp.getData(DataType.ALLOW_CHAT).equals(true)) {
-					op.sendMessage(r.getColor() + r.getName() + " " + fs.getName() + " §8»§r "
+					op.sendMessage(r.getColor() + r.getPrefix() + " " + fs.getName() + " §8»§r "
 							+ r.getChatColor() + msg);
 				}
 			}

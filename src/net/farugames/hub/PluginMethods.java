@@ -4,7 +4,7 @@ public class PluginMethods {
 	
 	private static String PREFIX = "§c§lF§e§la§a§lr§b§lu§d§lGames§r";
 	private static String PREFIX_SCOREBOARD = PREFIX;
-	private static String PREFIX_CHAT = "§5SodiumMC §8» §r";
+	private static String PREFIX_CHAT = PREFIX + " §8» §r";
 	
 	public static String getPrefix() {
 		return PREFIX;
