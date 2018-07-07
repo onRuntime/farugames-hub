@@ -40,8 +40,8 @@ public class Main extends JavaPlugin {
 				int gonlineplayers = IServer.getGlobalOnlinePlayers();
 				for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
 					boards.getValue().setLine(9, "§7Players: " + "§b" + gonlineplayers);
-
 				}
+				
 				for (Player p : Bukkit.getOnlinePlayers()) {
 					p.setLevel(gonlineplayers);
 				}
