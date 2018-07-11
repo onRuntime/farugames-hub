@@ -10,9 +10,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import net.farugames.api.spigot.listeners.Listeners;
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.spigot.player.currency.Currency;
+import net.farugames.api.tools.board.ScoreboardSign;
 import net.farugames.data.database.servers.IServer;
 import net.farugames.hub.boards.ScoreboardManager;
-import net.farugames.hub.boards.ScoreboardSign;
 import net.farugames.hub.listeners.ListenersManager;
 
 public class Main extends JavaPlugin {
@@ -39,6 +41,10 @@ public class Main extends JavaPlugin {
 			public void run() {
 				int gonlineplayers = IServer.getGlobalOnlinePlayers();
 				for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
+					FaruPlayer faruPlayer = FaruPlayer.getPlayer(boards.getKey().getUniqueId());
+					boards.getValue().setLine(4, "§7Coins: §e" + ScoreboardManager.format(faruPlayer.getCoins(Currency.COINS)));
+					boards.getValue().setLine(5, "§7Credits: §d" + ScoreboardManager.format(faruPlayer.getCoins(Currency.CREDITS)));
+					boards.getValue().setLine(6, "§7Level: §6" + faruPlayer.getExperience() + " §f(" + "0" + "§f%)");;
 					boards.getValue().setLine(9, "§7Players: " + "§b" + gonlineplayers);
 				}
 				

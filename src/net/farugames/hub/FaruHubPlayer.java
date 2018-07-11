@@ -6,9 +6,9 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.tools.board.ScoreboardSign;
 import net.farugames.api.tools.board.TeamsTagsManager;
 import net.farugames.hub.boards.ScoreboardManager;
-import net.farugames.hub.boards.ScoreboardSign;
 
 public class FaruHubPlayer {
 
