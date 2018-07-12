@@ -18,6 +18,7 @@ import net.farugames.api.spigot.player.rank.Rank;
 import net.farugames.api.tools.locations.Locations;
 import net.farugames.api.tools.player.UUIDManager;
 import net.farugames.hub.Main;
+import net.farugames.hub.boards.ScoreboardManager;
 
 public class EventsListener implements Listener {
 
@@ -52,6 +53,11 @@ public class EventsListener implements Listener {
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
 		net.farugames.data.spigot.Main.iFaruPlayer.remove(event.getPlayer().getUniqueId());
+		Player p = event.getPlayer();
+
+		if (ScoreboardManager.boards.containsKey(p)) {
+			ScoreboardManager.boards.get(p).destroy();
+		}
 	}
 
 	@EventHandler
