@@ -1,5 +1,5 @@
 main: net.farugames.hub.Main
 name: Hub
-version: 0.1.0
+version: 0.1.1
 authors: [3DX900, ChocoIG]
 depends: [FaruGamesAPI, FaruGamesData]

@@ -15,7 +15,7 @@ import net.farugames.api.spigot.player.currency.Currency;
 import net.farugames.api.tools.board.ScoreboardSign;
 import net.farugames.data.database.servers.IServer;
 import net.farugames.hub.boards.ScoreboardManager;
-import net.farugames.hub.listeners.ListenersManager;
+import net.farugames.hub.listeners.EventsListener;
 
 public class Main extends JavaPlugin {
 
@@ -35,7 +35,7 @@ public class Main extends JavaPlugin {
 	public void onEnable() {
 		net.farugames.api.spigot.Main.getInstance().disableEvent(Listeners.FOOD_LEVEL_CHANGE_LISTENER.getListener());
 		net.farugames.api.spigot.Main.getInstance().disableEvent(Listeners.WEATHER_CHANGE_LISTENER.getListener());
-		new ListenersManager(this).registerListeners();
+		Bukkit.getPluginManager().registerEvents(new EventsListener(), instance);
 		
 		Bukkit.getScheduler().scheduleAsyncRepeatingTask(instance, new Runnable() {
 			public void run() {
