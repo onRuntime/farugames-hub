@@ -18,7 +18,7 @@ import net.farugames.api.tools.board.ScoreboardSign;
 import net.farugames.data.database.servers.IServer;
 import net.farugames.hub.PluginMethods;
 
-public class ScoreboardManager implements Listener {
+public class ScoreboardManager {
 
 	public static Map<Player, ScoreboardSign> boards = new HashMap<>();
 
@@ -72,16 +72,6 @@ public class ScoreboardManager implements Listener {
 													// output times 10
 		boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
 		return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
-	}
-
-	@EventHandler
-	public void onQuit(PlayerQuitEvent e) {
-		Player p = e.getPlayer();
-
-		if (boards.containsKey(p)) {
-			boards.get(p).destroy();
-		}
-
 	}
 
 }
