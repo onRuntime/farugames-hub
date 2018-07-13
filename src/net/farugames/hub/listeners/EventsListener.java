@@ -2,6 +2,8 @@ package net.farugames.hub.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,6 +11,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import net.farugames.api.spigot.player.FaruPlayer;
@@ -17,7 +20,9 @@ import net.farugames.api.spigot.player.languages.Lang;
 import net.farugames.api.spigot.player.rank.Rank;
 import net.farugames.api.tools.locations.Locations;
 import net.farugames.api.tools.player.UUIDManager;
+import net.farugames.hub.FaruHubPlayer;
 import net.farugames.hub.Main;
+import net.farugames.hub.ParkourPlayerState;
 import net.farugames.hub.boards.ScoreboardManager;
 
 public class EventsListener implements Listener {
@@ -64,5 +69,48 @@ public class EventsListener implements Listener {
 	public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent e) {
 		Chat.customMessage(e, "", "");
 	}
+	
+	@EventHandler
+	public void onPlayerParkour(PlayerMoveEvent event) {
+		FaruHubPlayer fhp = Main.getInstance().getPlayer(event.getPlayer().getUniqueId());
+		Player player = event.getPlayer();
+		if (event.getPlayer().getLocation().getBlock().getType() == Material.IRON_PLATE) {
+			switch (fhp.parkourPlayerState.getStatus()) {
+			case LOBBY:
+				fhp.parkourPlayerState.setStatus(ParkourPlayerState.PARKOUR);
+				fhp.parkourPlayerState.setLoc(event.getFrom());;
+				player.sendMessage("parkour_start");
+			case PARKOUR:
+				player.sendMessage("parkour_finished");
+			}
+		} else if (event.getPlayer().getLocation().getBlock().getType() == Material.GOLD_PLATE) {
+			fhp.parkourPlayerState.setLoc(event.getFrom());
+		}
+		if(fhp.parkourPlayerState.getStatus() == ParkourPlayerState.PARKOUR && circle(event.getTo(),8)) {
+			player.teleport(fhp.parkourPlayerState.getLoc());
+		}
 
+	}
+
+	public Boolean circle(Location loc, int radius) {
+		int cx = loc.getBlockX();
+		int cy = loc.getBlockY();
+		int cz = loc.getBlockZ();
+
+		for (int x = cx - radius; x <= cx + radius; x++) {
+			for (int z = cz - radius; z <= cz + radius; z++) {
+				for (int y = (cy - radius); y < (cy + radius); y++) {
+					double dist = (cx - x) * (cx - x) + (cz - z) * (cz - z) + ((cy - y) * (cy - y));
+
+					if (dist < radius * radius) {
+						Location l = new Location(loc.getWorld(), x, y + 2, z);
+						if (l.getBlock().getType() == Material.HOPPER) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
