@@ -1,22 +1,18 @@
 package net.farugames.hub.boards;
 
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.spigot.player.currency.Currency;
+import net.farugames.api.tools.board.ScoreboardSign;
+import net.farugames.hub.Main;
+import net.farugames.hub.PluginMethods;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.NavigableMap;
 import java.util.TreeMap;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerQuitEvent;
-
-import net.farugames.api.spigot.player.FaruPlayer;
-import net.farugames.api.spigot.player.currency.Currency;
-import net.farugames.api.tools.board.ScoreboardSign;
-import net.farugames.data.database.servers.IServer;
-import net.farugames.hub.PluginMethods;
 
 public class ScoreboardManager {
 
@@ -37,7 +33,7 @@ public class ScoreboardManager {
 		sc.setLine(6, "§7Level: §6" + faruPlayer.getExperience() + " §f(" + "0" + "§f%)");
 		sc.setLine(7, "§3");
 		sc.setLine(8, "§7Hub: §3" + Bukkit.getServerName());
-		sc.setLine(9, "§7Players: §b" + IServer.getGlobalOnlinePlayers());
+		sc.setLine(9, "§7Players: §b" + Main.getGlobalOnlinePlayers());
 		sc.setLine(10, "§4");
 		sc.setLine(11, "§eplay.farugames.net");
 		sc.setLine(12, "§8§m+---------------+");

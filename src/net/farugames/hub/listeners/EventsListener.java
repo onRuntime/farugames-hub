@@ -1,10 +1,15 @@
 package net.farugames.hub.listeners;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
+import net.farugames.api.spigot.SpigotFaruAPI;
+import net.farugames.api.spigot.player.FaruPlayer;
+import net.farugames.api.spigot.player.chat.Chat;
+import net.farugames.api.spigot.player.languages.Lang;
+import net.farugames.api.spigot.player.rank.Rank;
+import net.farugames.api.tools.locations.Locations;
+import net.farugames.api.tools.player.UUIDManager;
+import net.farugames.hub.Main;
+import net.farugames.hub.boards.ScoreboardManager;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -13,17 +18,6 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-
-import net.farugames.api.spigot.player.FaruPlayer;
-import net.farugames.api.spigot.player.chat.Chat;
-import net.farugames.api.spigot.player.languages.Lang;
-import net.farugames.api.spigot.player.rank.Rank;
-import net.farugames.api.tools.locations.Locations;
-import net.farugames.api.tools.player.UUIDManager;
-import net.farugames.hub.FaruHubPlayer;
-import net.farugames.hub.Main;
-import net.farugames.hub.ParkourPlayerState;
-import net.farugames.hub.boards.ScoreboardManager;
 
 public class EventsListener implements Listener {
 
@@ -57,7 +51,7 @@ public class EventsListener implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		net.farugames.data.spigot.Main.iFaruPlayer.remove(event.getPlayer().getUniqueId());
+		SpigotFaruAPI.iFaruPlayer.remove(event.getPlayer().getUniqueId());
 		Player p = event.getPlayer();
 
 		if (ScoreboardManager.boards.containsKey(p)) {
@@ -72,13 +66,13 @@ public class EventsListener implements Listener {
 	
 	@EventHandler
 	public void onPlayerParkour(PlayerMoveEvent event) {
-		FaruHubPlayer fhp = Main.getInstance().getPlayer(event.getPlayer().getUniqueId());
+		/*FaruHubPlayer fhp = Main.getInstance().getPlayer(event.getPlayer().getUniqueId());
 		Player player = event.getPlayer();
 		if (event.getPlayer().getLocation().getBlock().getType() == Material.IRON_PLATE) {
 			switch (fhp.parkourPlayerState.getStatus()) {
 			case LOBBY:
 				fhp.parkourPlayerState.setStatus(ParkourPlayerState.PARKOUR);
-				fhp.parkourPlayerState.setLoc(event.getFrom());;
+				fhp.parkourPlayerState.setLoc(event.getFrom());
 				player.sendMessage("parkour_start");
 			case PARKOUR:
 				player.sendMessage("parkour_finished");
@@ -88,7 +82,7 @@ public class EventsListener implements Listener {
 		}
 		if(fhp.parkourPlayerState.getStatus() == ParkourPlayerState.PARKOUR && circle(event.getTo(),8)) {
 			player.teleport(fhp.parkourPlayerState.getLoc());
-		}
+		}*/
 
 	}
 
