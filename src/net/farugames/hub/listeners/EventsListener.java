@@ -1,15 +1,11 @@
 package net.farugames.hub.listeners;
 
-import net.farugames.api.spigot.SpigotFaruAPI;
-import net.farugames.api.spigot.player.FaruPlayer;
-import net.farugames.api.spigot.player.chat.Chat;
-import net.farugames.api.spigot.player.languages.Lang;
-import net.farugames.api.spigot.player.rank.Rank;
-import net.farugames.api.tools.locations.Locations;
-import net.farugames.api.tools.player.UUIDManager;
-import net.farugames.hub.Main;
-import net.farugames.hub.boards.ScoreboardManager;
-import org.bukkit.*;
+import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.Sound;
+import org.bukkit.craftbukkit.v1_9_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,39 +15,56 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import net.farugames.api.core.lang.I18n;
+import net.farugames.api.core.rank.Rank;
+import net.farugames.api.spigot.FaruPlayer;
+import net.farugames.api.spigot.SpigotFaruGamesAPI;
+import net.farugames.api.spigot.managers.ChatManager;
+import net.farugames.api.tools.locations.Locations;
+import net.farugames.api.tools.player.UUIDFetcher;
+import net.farugames.hub.FaruGamesHub;
+import net.farugames.hub.boards.ScoreboardManager;
+import net.farugames.hub.utils.Item;
+
 public class EventsListener implements Listener {
 
 	// player
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerJoin(PlayerJoinEvent e) {
-		Player p = e.getPlayer();
-		FaruPlayer faruPlayer = FaruPlayer.getPlayer(UUIDManager.getUUID(p.getName()));
-		Main.getInstance().getPlayer(UUIDManager.getUUID(faruPlayer.getPlayer().getName()));
+		Player player = e.getPlayer();
+		FaruPlayer faruPlayer = FaruPlayer.getPlayer(UUIDFetcher.getUUID(player.getName()));
+		FaruGamesHub.getInstance().getPlayer(UUIDFetcher.getUUID(faruPlayer.getPlayer().getName()));
 		e.setJoinMessage(null);
-
-		p.playSound(p.getLocation(), Sound.BLOCK_NOTE_PLING, 2F, 1F);
-		p.teleport(Locations.getLocation(Locations.HUB, Bukkit.getWorld("world")));
-		p.setGameMode(GameMode.ADVENTURE);
-		p.setMaxHealth(2.0);
-		p.setHealth(2.0);
-		p.setFoodLevel(20);
-		p.setExp(0);
-		if (faruPlayer.getRank().getPower() >= Rank.ADMINISTRATOR.getPower())
+		
+		for(Item item : Item.values()) { 
+			if(!item.getType().equals("hub")) continue;
+			if(item.getAccessRank().getPower() > faruPlayer.getRank().getPower()) continue;
+			if(item.getItem() == null) { player.getInventory().setItem(item.getSlot(), CraftItemStack.asBukkitCopy(faruPlayer.getItemStackHead())); continue; }
+			player.getInventory().setItem(item.getSlot(), item.getItem());
+		}
+		
+		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 2F, 1F);
+		player.teleport(Locations.getLocation(Locations.HUB, Bukkit.getWorld("world")));
+		player.setGameMode(GameMode.ADVENTURE);
+		player.setMaxHealth(2.0);
+		player.setHealth(2.0);
+		player.setFoodLevel(20);
+		player.setExp(0);
+		
+		if (faruPlayer.getRank().getPower() >= Rank.ADMIN.getPower())
 			faruPlayer.getPlayer().setOp(true);
 		if (faruPlayer.getRank().getPower() >= Rank.YOUTUBER.getPower()) {
-			p.setAllowFlight(true);
+			player.setAllowFlight(true);
 			for (Player players : Bukkit.getOnlinePlayers()) {
-				players.sendMessage(Lang.JOIN_MESSAGE.in(faruPlayer.getLanguage())
-						.replaceAll("%player_rank_prefix%",
-								faruPlayer.getRank().getColor() + faruPlayer.getRank().getPrefix())
-						.replaceAll("%player%", faruPlayer.getPlayer().getName()));
+				players.sendMessage(I18n.tl(faruPlayer.getLanguage(), "server.message.join", faruPlayer.getRank().getColor() + faruPlayer.getRank().getPrefix(), faruPlayer.getPlayer().getName()));
+				return;
 			}
 		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerQuit(PlayerQuitEvent event) {
-		SpigotFaruAPI.iFaruPlayer.remove(event.getPlayer().getUniqueId());
+		SpigotFaruGamesAPI.iFaruPlayer.remove(event.getPlayer().getUniqueId());
 		Player p = event.getPlayer();
 
 		if (ScoreboardManager.boards.containsKey(p)) {
@@ -61,7 +74,7 @@ public class EventsListener implements Listener {
 
 	@EventHandler
 	public void onAsyncPlayerChatEvent(AsyncPlayerChatEvent e) {
-		Chat.customMessage(e, "", "");
+		ChatManager.customMessage(e, "", "");
 	}
 	
 	@EventHandler

@@ -1,4 +1,4 @@
-main: net.farugames.hub.Main
+main: net.farugames.hub.FaruGamesHub
 name: Hub
 version: 0.1.1
 authors: [3DX900, ChocoIG]
