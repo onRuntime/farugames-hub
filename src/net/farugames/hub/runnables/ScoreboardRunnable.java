@@ -8,7 +8,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import net.farugames.api.core.currency.Currency;
 import net.farugames.api.spigot.FaruPlayer;
 import net.farugames.api.tools.board.ScoreboardSign;
-import net.farugames.database.sql.accounts.IServer;
 import net.farugames.hub.boards.ScoreboardManager;
 
 public class ScoreboardRunnable extends BukkitRunnable {
@@ -21,7 +20,7 @@ public class ScoreboardRunnable extends BukkitRunnable {
 	public void run() {
 		if(timer<=0) {timer=4;}
 		for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
-			int gonlineplayers = IServer.getGlobalOnlinePlayers();
+			//int gonlineplayers = IServer.getGlobalOnlinePlayers();
 			FaruPlayer faruPlayer = FaruPlayer.getPlayer(boards.getKey().getUniqueId());
 			switch(timer) {
 			case 4:
@@ -38,7 +37,7 @@ public class ScoreboardRunnable extends BukkitRunnable {
 				boards.getValue().setLine(9, "§7Players: " + "§b" + "0");
 				break;
 			}
-			faruPlayer.getPlayer().setLevel(gonlineplayers);
+			//faruPlayer.getPlayer().setLevel(gonlineplayers);
 		}
 		timer = timer - 1;
 	}

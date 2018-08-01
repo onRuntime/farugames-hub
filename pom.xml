@@ -58,6 +58,9 @@
 				<version>2.3.2</version>
 				<configuration>
 					<finalName>${artifactId}</finalName>
+					<source>1.6</source>
+					<target>1.6</target>
+					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -111,6 +114,6 @@
 	</dependencies>
 
 	<version>0.0.1-SNAPSHOT</version>
-	<name>FaruHub</name>
+	<name>FaruGamesHub</name>
 
 </project>

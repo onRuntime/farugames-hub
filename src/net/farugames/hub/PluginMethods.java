@@ -2,9 +2,9 @@ package net.farugames.hub;
 
 public class PluginMethods {
 	
-	private static String PREFIX = "Â§c&lFaruÂ§eGÂ§aaÂ§bmÂ§deÂ§9sÂ§r";
+	private static String PREFIX = "§c§lFaru§eG§aa§bm§de§9s§r";
 	private static String PREFIX_SCOREBOARD = PREFIX;
-	private static String PREFIX_CHAT = PREFIX + " Â§8Â» Â§r";
+	private static String PREFIX_CHAT = PREFIX + " §8» §r";
 	
 	public static String getPrefix() {
 		return PREFIX;
