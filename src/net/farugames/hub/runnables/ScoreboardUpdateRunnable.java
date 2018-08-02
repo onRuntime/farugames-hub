@@ -10,35 +10,37 @@ import net.farugames.api.spigot.FaruPlayer;
 import net.farugames.api.tools.board.ScoreboardSign;
 import net.farugames.hub.boards.ScoreboardManager;
 
-public class ScoreboardRunnable extends BukkitRunnable {
+public class ScoreboardUpdateRunnable extends BukkitRunnable {
 
 	public static int timer = 0;
-	
-	public ScoreboardRunnable() {}
-	
+
+	public ScoreboardUpdateRunnable() {
+	}
+
 	@Override
 	public void run() {
-		if(timer<=0) {timer=4;}
 		for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
-			//int gonlineplayers = IServer.getGlobalOnlinePlayers();
+			// int gonlineplayers = IServer.getGlobalOnlinePlayers();
 			FaruPlayer faruPlayer = FaruPlayer.getPlayer(boards.getKey().getUniqueId());
-			switch(timer) {
+			switch (timer) {
 			case 4:
-				boards.getValue().setLine(4, "ง7Coins: งe" + ScoreboardManager.format(faruPlayer.getCoins(Currency.COINS)));
+				boards.getValue().setLine(4,
+						"ยง7Coins: ยงe" + ScoreboardManager.format(faruPlayer.getCoins(Currency.COINS)));
 				break;
 			case 3:
-				boards.getValue().setLine(5, "ง7Credits: งd" + ScoreboardManager.format(faruPlayer.getCoins(Currency.CREDITS)));
+				boards.getValue().setLine(5,
+						"ยง7Credits: ยงd" + ScoreboardManager.format(faruPlayer.getCoins(Currency.CREDITS)));
 				break;
 			case 2:
-				boards.getValue().setLine(6, "ง7Level: ง6" + faruPlayer.getExperience() + " งf(" + "0" + "งf%)");
+				boards.getValue().setLine(6, "ยง7Level: ยง6" + faruPlayer.getExperience() + " ยงf(" + "0" + "ยงf%)");
 				break;
 			case 1:
-				
-				boards.getValue().setLine(9, "ง7Players: " + "งb" + "0");
+				boards.getValue().setLine(9, "ยง7Players: " + "ยงb" + "0");
 				break;
 			}
-			//faruPlayer.getPlayer().setLevel(gonlineplayers);
+			// faruPlayer.getPlayer().setLevel(gonlineplayers);
 		}
+		if (timer <= 0) { timer = 4; }
 		timer = timer - 1;
 	}
 
