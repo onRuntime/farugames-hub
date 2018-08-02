@@ -14,14 +14,10 @@ public class ScoreboardAnimationsRunnable extends BukkitRunnable {
 	int timer = 0;
 	boolean direction = false;
 
-	public ScoreboardAnimationsRunnable() {}
-
 	@Override
 	public void run() {
 		for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
 			switch (timer) {
-			case 0:
-				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard());
 			case 1:
 				boards.getValue().setLine(11, "§6play.farugames.net");
 				break;
@@ -78,7 +74,6 @@ public class ScoreboardAnimationsRunnable extends BukkitRunnable {
 				break;
 			case 20:
 				boards.getValue().setLine(11, "§6play.farugames.§en§fe§et");
-				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard());
 				break;
 			case 21:
 				boards.getValue().setLine(11, "§6play.farugames.n§ee§ft");
@@ -91,21 +86,22 @@ public class ScoreboardAnimationsRunnable extends BukkitRunnable {
 				break;
 			case 30:
 				boards.getValue().setLine(11, "§6play.farugames.net");
-				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard().replaceAll("§f▼", "§b▼"));
+				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard());
 				break;
 			case 34:
 				boards.getValue().setLine(11, "§eplay.farugames.net");
+				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard().replaceAll("§f▼", "§b▼"));
 				break;
 			case 38:
 				boards.getValue().setLine(11, "§6play.farugames.net");
-				break;
-			case 40:
 				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard());
 				break;
 			case 42:
 				boards.getValue().setLine(11, "§eplay.farugames.net");
+				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard().replaceAll("§f▼", "§b▼"));
 				break;
 			case 46:
+				boards.getValue().setObjectiveName(PluginMethods.getPrefixScoreboard());
 				boards.getValue().setLine(11, "§6play.farugames.net");
 				break;
 			}
