@@ -22,7 +22,7 @@ public class FaruHubPlayer {
 		this.player = Bukkit.getPlayer(uuid);
 		this.faruPlayer = FaruPlayer.getPlayer(uuid);
 		
-		this.scoreboard = new ScoreboardSign(this.player, "ยง7Loading...");
+		this.scoreboard = new ScoreboardSign(this.player, "ง7Loading...");
 		this.sendTablist();
 		ScoreboardManager.loadScoreboard(FaruPlayer.getPlayer(uuid));
 		ParkourPlayerState.setStatus(ParkourPlayerState.LOBBY);
