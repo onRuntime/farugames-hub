@@ -36,7 +36,7 @@ public class FaruGamesHub extends JavaPlugin {
 
 		new MenuRunnable().runTaskTimer(instance, 0L, 40L);
 		new ScoreboardAnimationsRunnable().runTaskTimer(instance, 0L, 2L);
-		new ScoreboardUpdateRunnable().runTaskTimer(instance, 0L, 10L);
+		new ScoreboardUpdateRunnable().runTaskTimer(instance, 0L, 5L);
 
 		super.onEnable();
 	}

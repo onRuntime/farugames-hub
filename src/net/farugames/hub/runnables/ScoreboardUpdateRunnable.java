@@ -14,9 +14,6 @@ public class ScoreboardUpdateRunnable extends BukkitRunnable {
 
 	public static int timer = 0;
 
-	public ScoreboardUpdateRunnable() {
-	}
-
 	@Override
 	public void run() {
 		for (Entry<Player, ScoreboardSign> boards : ScoreboardManager.boards.entrySet()) {
@@ -24,12 +21,10 @@ public class ScoreboardUpdateRunnable extends BukkitRunnable {
 			FaruPlayer faruPlayer = FaruPlayer.getPlayer(boards.getKey().getUniqueId());
 			switch (timer) {
 			case 4:
-				boards.getValue().setLine(4,
-						"§7Coins: §e" + ScoreboardManager.format(faruPlayer.getCoins(Currency.COINS)));
+				boards.getValue().setLine(4, "§7Cookies: §e" + ScoreboardManager.format(faruPlayer.getCoins(Currency.COINS)));
 				break;
 			case 3:
-				boards.getValue().setLine(5,
-						"§7Credits: §d" + ScoreboardManager.format(faruPlayer.getCoins(Currency.CREDITS)));
+				boards.getValue().setLine(5, "§7Candy: §d" + ScoreboardManager.format(faruPlayer.getCoins(Currency.CREDITS)));
 				break;
 			case 2:
 				boards.getValue().setLine(6, "§7Level: §6" + faruPlayer.getExperience() + " §f(" + "0" + "§f%)");
