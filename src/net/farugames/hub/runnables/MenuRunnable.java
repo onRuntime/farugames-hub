@@ -11,10 +11,10 @@ public class MenuRunnable extends BukkitRunnable {
 	@Override
 	public void run() {
 		for(Player onlinePlayers : Bukkit.getOnlinePlayers()) {
-			if(onlinePlayers.getInventory().getItem(4).equals(Item.MENU_COSMETICS_OPEN.getItem())) {
-				onlinePlayers.getInventory().setItem(4, Item.MENU_COSMETICS_CLOSE.getItem());
+			if(onlinePlayers.getInventory().getItem(4).equals(Item.MENU_COSMETICS_OPEN.getItemBuilder().build())) {
+				onlinePlayers.getInventory().setItem(4, Item.MENU_COSMETICS_CLOSE.getItemBuilder().build());
 			} else {
-				onlinePlayers.getInventory().setItem(4, Item.MENU_COSMETICS_OPEN.getItem());
+				onlinePlayers.getInventory().setItem(4, Item.MENU_COSMETICS_OPEN.getItemBuilder().build());
 			}
 		}
 	}

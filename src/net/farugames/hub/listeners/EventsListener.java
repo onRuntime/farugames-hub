@@ -39,8 +39,8 @@ public class EventsListener implements Listener {
 		for(Item item : Item.values()) { 
 			if(!item.getType().equals("hub")) continue;
 			if(item.getAccessRank().getPower() > faruPlayer.getRank().getPower()) continue;
-			if(item.getItem() == null) { player.getInventory().setItem(item.getSlot(), CraftItemStack.asBukkitCopy(faruPlayer.getItemStackHead())); continue; }
-			player.getInventory().setItem(item.getSlot(), item.getItem());
+			if(item.getItemBuilder() == null) { player.getInventory().setItem(item.getSlot(), CraftItemStack.asBukkitCopy(faruPlayer.getItemStackHead())); continue; }
+			player.getInventory().setItem(item.getSlot(), item.getItemBuilder().build());
 		}
 		
 		player.playSound(player.getLocation(), Sound.BLOCK_NOTE_PLING, 2F, 1F);
